@@ -10,5 +10,6 @@ program fortranString
     ! Prevent default I-N integer assumption
     implicit none
 
+    type (String) :: test
     print *, "Hello world!"
 end program fortranString
