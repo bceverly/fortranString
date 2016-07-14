@@ -10,9 +10,15 @@ program fortranString
     ! Prevent default I-N integer assumption
     implicit none
 
-    type (String) :: test
-    call test%setValue("Bonjour!")
-    call test%setValue("Hallo!")
-    call test%setValue("Hello world!")
-    print *, test%getValue()
+    ! Declar local variables
+    type (String) :: string1
+    type (String) :: string2
+
+    ! Run tests
+    call string1%setValue("Bonjour!")
+    call string1%setValue("Hallo!")
+    call string2%setValue("Hello world!")
+    string1 = string2
+
+    print *, string1%getValue()
 end program fortranString
