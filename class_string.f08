@@ -26,7 +26,7 @@ contains
     subroutine String_assign(lhs, rhs)
         implicit none
         class (String), intent (out), allocatable :: lhs
-        class (String), intent (in) :: rhs
+        type (String), intent (in) :: rhs
 
         call lhs%setValue(rhs%getValue())
     end subroutine String_assign

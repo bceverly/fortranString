@@ -29,3 +29,5 @@
 *.app
 
 fortranString
+*.swp
+*.core
