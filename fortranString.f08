@@ -1,3 +1,14 @@
+!
+! Main program - exercises String class created
+!                in Fortran 2008
+!
+
 program fortranString
-      print *, "Hello world!"
+    ! Pulls in public interface for our String module
+    use class_string
+
+    ! Prevent default I-N integer assumption
+    implicit none
+
+    print *, "Hello world!"
 end program fortranString
