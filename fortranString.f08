@@ -11,5 +11,8 @@ program fortranString
     implicit none
 
     type (String) :: test
-    print *, "Hello world!"
+    call test%setValue("Bonjour!")
+    call test%setValue("Hallo!")
+    call test%setValue("Hello world!")
+    print *, test%getValue()
 end program fortranString
