@@ -27,6 +27,8 @@ contains
         implicit none
         class (String), intent (out), allocatable :: lhs
         class (String), intent (in) :: rhs
+
+        call lhs%setValue(rhs%getValue())
     end subroutine String_assign
 
     function getValue(this) result(res)
