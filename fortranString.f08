@@ -11,12 +11,16 @@ program fortranString
     ! Prevent default I-N integer assumption
     implicit none
 
-    ! Declar local variables
+    ! Declare local variables
     type (string_t) :: string1
     type (string_t) :: string2
     type (ustring_t) :: string3
+    character (:), allocatable :: char_var
+    
+    char_var = "Bonjour"
 
     ! Run tests
+    string1 = char_var
     call string1%set_value("Bonjour!")
     call string1%set_value("Hallo!")
 
