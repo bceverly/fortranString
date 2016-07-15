@@ -40,11 +40,11 @@ contains
         res = this%str_m
     end function get_value_string_t
 
-    subroutine set_value_string_t(this, theValue)
+    subroutine set_value_string_t(this, the_value)
         class (string_t), intent (inout) :: this
-        character(len=*), intent (in) :: theValue
+        character(len=*), intent (in) :: the_value
 
-        this%str_m = trim(theValue)
+        this%str_m = trim(the_value)
     end subroutine set_value_string_t
 
 end module string_m

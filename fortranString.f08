@@ -6,7 +6,7 @@
 program fortranString
     ! Pulls in public interface for our String module
     use string_m, only : string_t
-    use ustring_m
+    use ustring_m, only : ustring_t
 
     ! Prevent default I-N integer assumption
     implicit none
@@ -14,7 +14,7 @@ program fortranString
     ! Declar local variables
     type (string_t) :: string1
     type (string_t) :: string2
-    type (UppercaseString) :: string3
+    type (ustring_t) :: string3
 
     ! Run tests
     call string1%set_value("Bonjour!")
