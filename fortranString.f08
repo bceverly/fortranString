@@ -5,7 +5,7 @@
 
 program fortranString
     ! Pulls in public interface for our String module
-    use class_string
+    use string_m
     use class_uppercase_string
 
     ! Prevent default I-N integer assumption

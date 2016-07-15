@@ -1,4 +1,4 @@
-module class_string
+module string_m
     type String
             private
                 character(:), allocatable :: str_
@@ -47,4 +47,4 @@ contains
         this%str_ = trim(theValue)
     end subroutine setValue
 
-end module class_string
+end module string_m

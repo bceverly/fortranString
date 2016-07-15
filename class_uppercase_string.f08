@@ -1,5 +1,5 @@
 module class_uppercase_string
-    use class_string
+    use string_m
     use string_utility
 
     type, extends(String) :: UppercaseString
