@@ -1,9 +1,11 @@
 module ustring_m
     use string_m, only : string_t
     use string_utility
-    implicit none
 
-    type, extends(string_t) :: ustring_t
+    implicit none
+    private
+
+    type, public, extends(string_t) :: ustring_t
         private
 
     contains
