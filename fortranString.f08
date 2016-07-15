@@ -6,7 +6,7 @@
 program fortranString
     ! Pulls in public interface for our String module
     use string_m
-    use class_uppercase_string
+    use ustring_m
 
     ! Prevent default I-N integer assumption
     implicit none

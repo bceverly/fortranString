@@ -1,4 +1,4 @@
-module class_uppercase_string
+module ustring_m
     use string_m
     use string_utility
 
@@ -31,4 +31,4 @@ contains
         call this%String%setValue(StrUpCase(trim(theValue)))
     end subroutine setUppercaseValue
 
-end module class_uppercase_string
+end module ustring_m
