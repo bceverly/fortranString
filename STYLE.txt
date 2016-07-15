@@ -1,7 +1,8 @@
 Style Guide Recommendations
 
 This style guide comes from recommendations received on comp.lang.fortran
-from various helpful people including Wolfgang Kilian.
+and the Fortran wiki (http://fortranwiki.org) from various helpful people 
+including Wolfgang Kilian and Ian Harvey.
 
 Use of "implicit none":
 --- --  -------- ----
@@ -30,7 +31,7 @@ module foo
     implicit none
     private
 
-Module names vs. Type Names:
+Module names vs. type names:
 ------ ----- --  ---- -----
 
 Declare the name of the module to be the base name that you would like
@@ -47,13 +48,13 @@ module foo
 
     type :: foo_t
 
-Module Names are File Names:
+Module names are file names:
 ------ ----- --- ---- -----
 
 Name files the same as the module.  For example, if you have a module named
 'foo', the file will be named 'foo.f', or 'foo.f95', etc. 
 
-Define Type-Bound Procedures in Submodules:
+Define type-bound procedures in submodules:
 ------ ---- ----- ---------- -- ----------
 
 module foo
