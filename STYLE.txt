@@ -2,7 +2,7 @@ Style Guide Recommendations
 
 This style guide comes from recommendations received on comp.lang.fortran
 and the Fortran wiki (http://fortranwiki.org) from various helpful people 
-including Wolfgang Kilian and Ian Harvey.
+including Wolfgang Kilian, FortranFan and Ian Harvey.
 
 Use of "implicit none":
 --- --  -------- ----
@@ -25,22 +25,40 @@ For modules and user defined types, place private at the top of the
 declaration to force private as the default for any member variables or
 procedures.  To declare public, they have to be explicitly identified.
 
-Examples:
+Example:
 
 module foo
     implicit none
     private
 
+For user defined types, specify private by default for both member
+variables as well as type bound procedures.  This will force the explicit
+declaration of "public" for the things that are to be public.
+
+Example:
+
+type foo_t
+    private
+        integer :: bar_m
+    contains
+        private
+
+Private members in a user defined type
+------- ------- -- - ---- ------- ----
+
+Private member variables should have an underscore m suffix on them to
+indicate they are private member variables.  See above example.
+
 Module names vs. type names:
 ------ ----- --  ---- -----
 
-Declare the name of the module to be the base name that you would like
-to use, then declare the type within the module with an underscore t
+Declare the name of the module to have an underscore m after the name
+of the module, then declare the type within the module with an underscore t
 suffix:
 
-Examples:
+Example:
 
-module foo
+module foo_m
     implicit none
     private
 
@@ -52,16 +70,58 @@ Module names are file names:
 ------ ----- --- ---- -----
 
 Name files the same as the module.  For example, if you have a module named
-'foo', the file will be named 'foo.f', or 'foo.f95', etc. 
+'foo_m', the file will be named 'foo_m.f', or 'foo_m.f95', etc. 
 
 Define type-bound procedures in submodules:
 ------ ---- ----- ---------- -- ----------
 
-module foo
-end module foo
+Submodules should be named with the underscore a suffix and the filename
+should be the same as the submodule.
+
+Example:
+
+module foo_m
+end module foo_m
 
 submodule (foo) foo_a
 end submodule foo_a
 
-Submodules should be named with the underscore a suffix and the filename
-should be the same as the submodule.
+Use statements should have the only clause
+--- ---------- ------ ---- --- ---- ------
+
+When using the "use" statement to pull in an external module, use the
+"only" clause to explicitly declare the items to be used from that module.
+This will prevent unwanted side-effects of pulling in other items that
+might cause name collisions, etc.
+
+Example:
+
+module foo_m
+    use bar_m, only : bar_t
+    implicit none
+
+Use the pass attribute on type-bound procedures
+--- --- ---- --------- -- ---- ----- ----------
+
+By using the "pass" attribute, you can explicitly declare the name of the
+dummy parameter passed that contains the object to a type-bound procedure.
+
+Example:
+
+type, public :: foo_t
+    private
+contains
+    private
+    procedure, pass(this), public :: bar => bar_foo_t 
+
+Method names on type bound procedures
+------ ----- -- ---- ----- ----------
+
+The names of type-bound procedures should have the type to which they
+are bound for their internal names as a suffix.  You can provide a public
+alias that excludes the name.  The advantage to doing this is that Fortran
+does not allow you to define two methods in an inheritance chain that have
+the same method name.  By manually decorating the name, you avoid the
+potential name collision.
+
+See the above example.
