@@ -125,3 +125,14 @@ the same method name.  By manually decorating the name, you avoid the
 potential name collision.
 
 See the above example.
+
+Use lowercase for type and variable names
+--- --------- --- ---- --- -------- -----
+
+Since the Fortran compiler is case insensitive, use underscore separated
+names instead of case to differentiate names of types and variables.
+
+Example:
+
+program foo
+    integer :: foo_variable_name
