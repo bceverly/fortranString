@@ -14,16 +14,16 @@ module ustring_m
     end type ustring_t
 
     interface assignment (=)
-        module procedure ustring_assign
+        module procedure ustring_t_assign
     end interface
 
 contains
-    subroutine ustring_assign(lhs, rhs)
+    subroutine ustring_t_assign(lhs, rhs)
         class (ustring_t), intent (out), allocatable :: lhs
         class (ustring_t), intent (in) :: rhs
 
         call lhs%set_value(rhs%string_t%get_value())
-    end subroutine ustring_assign
+    end subroutine ustring_t_assign
 
     subroutine set_uvalue(this, the_value)
         class (ustring_t), intent (inout) :: this
