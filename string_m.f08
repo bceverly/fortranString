@@ -1,50 +1,50 @@
 module string_m
-    type String
-            private
-                character(:), allocatable :: str_
-        contains
-            private
-                procedure, public, pass(this) :: getValue
-                procedure, public, pass(this) :: setValue
-    end type String
+    implicit none
+    private
 
-    interface String
-        module procedure String_constructor
-    end interface String
+    type, public :: string_t
+        private
+
+        character(:), allocatable :: str_m
+    contains
+        private
+
+        procedure, public, pass(this) :: get_value => get_value_string_t
+        procedure, public, pass(this) :: set_value => set_value_string_t
+    end type string_t
+
+    interface string_t
+        module procedure string_t_constructor
+    end interface string_t
 
     interface assignment (=)
-        module procedure String_assign
+        module procedure string_t_assign
     end interface
 
 contains
-    type (String) function String_constructor()
-        implicit none
+    type (string_t) function string_t_constructor()
+        string_t_constructor%str_m = ""
+    end function string_t_constructor
 
-        String_constructor%str_ = ""
-    end function String_constructor
+    subroutine string_t_assign(lhs, rhs)
+        class (string_t), intent (out), allocatable :: lhs
+        type (string_t), intent (in) :: rhs
 
-    subroutine String_assign(lhs, rhs)
-        implicit none
-        class (String), intent (out), allocatable :: lhs
-        type (String), intent (in) :: rhs
+        call lhs%set_value(rhs%get_value())
+    end subroutine string_t_assign
 
-        call lhs%setValue(rhs%getValue())
-    end subroutine String_assign
-
-    function getValue(this) result(res)
-        implicit none
+    function get_value_string_t(this) result(res)
         character (:), allocatable :: res
-        class (String), intent (in) :: this
+        class (string_t), intent (in) :: this
 
-        res = this%str_
-    end function getValue
+        res = this%str_m
+    end function get_value_string_t
 
-    subroutine setValue(this, theValue)
-        implicit none
-        class (String), intent (inout) :: this
+    subroutine set_value_string_t(this, theValue)
+        class (string_t), intent (inout) :: this
         character(len=*), intent (in) :: theValue
 
-        this%str_ = trim(theValue)
-    end subroutine setValue
+        this%str_m = trim(theValue)
+    end subroutine set_value_string_t
 
 end module string_m

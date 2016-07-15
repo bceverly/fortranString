@@ -2,11 +2,11 @@ module ustring_m
     use string_m
     use string_utility
 
-    type, extends(String) :: UppercaseString
+    type, extends(string_t) :: UppercaseString
         private
 
     contains
-        procedure, public, pass(this) :: setValue => setUppercaseValue
+        procedure, public, pass(this) :: set_value => set_uvalue
 
     end type UppercaseString
 
@@ -20,15 +20,15 @@ contains
         class (UppercaseString), intent (out), allocatable :: lhs
         class (UppercaseString), intent (in) :: rhs
 
-        call lhs%setValue(rhs%String%getValue())
+        call lhs%set_value(rhs%string_t%get_value())
     end subroutine UppercaseString_assign
 
-    subroutine setUppercaseValue(this, theValue)
+    subroutine set_uvalue(this, theValue)
         implicit none
         class (UppercaseString), intent (inout) :: this
         character(len=*), intent (in) :: theValue
 
-        call this%String%setValue(StrUpCase(trim(theValue)))
-    end subroutine setUppercaseValue
+        call this%string_t%set_value(StrUpCase(trim(theValue)))
+    end subroutine set_uvalue
 
 end module ustring_m
