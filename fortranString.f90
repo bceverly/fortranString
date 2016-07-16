@@ -16,19 +16,24 @@ program fortranString
     type (string_t) :: string2
     type (ustring_t) :: string3
 
+    !
     ! Run tests
+    !
+
+    ! Test assignment from character
     string1 = "Bonjour"
     print *, string1%get_value()
 
+    ! Test assignment from one string_t to another
     string2 = "Hello world!"
-    print *, string2%get_value()
-
     string1 = string2
     print *, string1%get_value()
 
+    ! Test the uppercase subclass assign from chracter
     string3 = "Howdy!"
     print *, string3%get_value()
 
+    ! Test assigning a string_t to a ustring_t (should uppercase)
     string3 = string2
     print *, string3%get_value()
 end program fortranString
