@@ -10,30 +10,28 @@ module ustring_m
 
     contains
         procedure, public, pass(this) :: set_value => set_uvalue
-
-        generic :: assignment (=) => ustring_t_assign_string_t, &
-                          ustring_t_assign_character
-
-        procedure, private, pass(lhs) :: ustring_t_assign_string_t
-        procedure, private, pass(lhs) :: ustring_t_assign_character
+        procedure, public, pass(lhs) :: string_t_assign_string_t => &
+                                         ustring_t_assign_string_t
+        procedure, public, pass(lhs) :: string_t_assign_character => &
+                                         ustring_t_assign_character
     end type ustring_t
 
 contains
-    subroutine ustring_t_assign_string_t(lhs, rhs)
+    pure subroutine ustring_t_assign_string_t(lhs, rhs)
         class (ustring_t), intent (inout) :: lhs
-        type (string_t), intent (in) :: rhs
+        class (string_t), intent (in) :: rhs
 
-        lhs = StrUpCase(rhs%get_value())
+        call lhs%set_value(rhs%get_value())
     end subroutine ustring_t_assign_string_t
 
-    subroutine ustring_t_assign_character(lhs, rhs)
+    elemental subroutine ustring_t_assign_character(lhs, rhs)
         class (ustring_t), intent (inout) :: lhs
         character(len=*), intent(in) :: rhs
 
-        lhs = StrUpCase(rhs)
+        call lhs%string_t%set_value(StrUpCase(rhs))
     end subroutine ustring_t_assign_character
 
-    subroutine set_uvalue(this, the_value)
+    pure subroutine set_uvalue(this, the_value)
         class (ustring_t), intent (inout) :: this
         character(len=*), intent (in) :: the_value
 

@@ -14,7 +14,8 @@ module string_m
 
         generic, public  :: assignment (=) => string_t_assign_character
 
-        procedure, private, pass(lhs) :: string_t_assign_character
+        procedure, private, pass(lhs) :: string_t_assign_string_t, &
+                                         string_t_assign_character
     end type string_t
 
     interface string_t
@@ -26,6 +27,13 @@ contains
         string_t_constructor%str_m = ""
     end function string_t_constructor
 
+    subroutine string_t_assign_string_t(lhs, rhs)
+        class (string_t), intent (inout) :: lhs
+        class (string_t), intent (in) :: rhs
+
+        lhs%str_m = rhs%str_m
+    end subroutine string_t_assign_string_t
+
     elemental subroutine string_t_assign_character(lhs, rhs)
         class (string_t), intent (inout) :: lhs
         character(len=*), intent (in) :: rhs
@@ -33,14 +41,14 @@ contains
         lhs%str_m = rhs
     end subroutine string_t_assign_character
 
-    function get_value_string_t(this) result(res)
+    pure function get_value_string_t(this) result(res)
         character (:), allocatable :: res
         class (string_t), intent (in) :: this
 
         res = this%str_m
     end function get_value_string_t
 
-    subroutine set_value_string_t(this, the_value)
+    pure subroutine set_value_string_t(this, the_value)
         class (string_t), intent (inout) :: this
         character(len=*), intent (in) :: the_value
 

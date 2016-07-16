@@ -9,7 +9,7 @@ module string_utility
     character (len=*), private, parameter :: UPPER_CASE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 contains
-    function StrUpCase(Input_String) result(Output_String)
+    pure function StrUpCase(Input_String) result(Output_String)
         character (len=*), intent (in) :: Input_String
         character (len(Input_String)) :: Output_String
 
@@ -23,7 +23,7 @@ contains
         end do
     end function StrUpCase
 
-    function StrLowCase(Input_String) result(Output_String)
+    pure function StrLowCase(Input_String) result(Output_String)
         character (len=*), intent (in) :: Input_String
         character (len(Input_String)) :: Output_String
 
