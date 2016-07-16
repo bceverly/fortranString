@@ -64,7 +64,7 @@ contains
         lhs%str_m = rhs
     end subroutine string_t_assign_character
 
-    ! Getter method
+    ! Getter function
     pure function get_value_string_t(this) result(res)
         character (:), allocatable :: res
         class (string_t), intent (in) :: this
@@ -72,7 +72,7 @@ contains
         res = this%str_m
     end function get_value_string_t
 
-    ! Setter method
+    ! Setter subroutine
     pure subroutine set_value_string_t(this, the_value)
         class (string_t), intent (inout) :: this
         character(len=*), intent (in) :: the_value
