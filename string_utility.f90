@@ -1,14 +1,27 @@
+!
+! String utility module
+!
+! This module contains helper functions that don't exist in the standard
+! set of Fortran intrinsics.
+!
 module string_utility
+    ! Set defaults for module
     implicit none
-
     private
+
+    ! Declare the public functions exposed by this module
     public :: ucase
     public :: lcase
 
-    character (len=*), private, parameter :: LOWER_CASE = 'abcdefghijklmnopqrstuvwxyz'
-    character (len=*), private, parameter :: UPPER_CASE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    ! Helper strings to aid in the converstion of upper to lower and
+    ! vice-versa
+    character (len=*), private, parameter :: LOWER_CASE = &
+        'abcdefghijklmnopqrstuvwxyz'
+    character (len=*), private, parameter :: UPPER_CASE = &
+        'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 contains
+    ! Convert string to all uppercase
     pure function ucase(Input_String) result(Output_String)
         character (len=*), intent (in) :: Input_String
         character (len(Input_String)) :: Output_String
@@ -23,6 +36,7 @@ contains
         end do
     end function ucase
 
+    ! Convert string to all lowercase
     pure function lcase(Input_String) result(Output_String)
         character (len=*), intent (in) :: Input_String
         character (len(Input_String)) :: Output_String
