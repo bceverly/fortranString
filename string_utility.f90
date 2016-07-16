@@ -2,14 +2,14 @@ module string_utility
     implicit none
 
     private
-    public :: StrUpCase
-    public :: StrLowCase
+    public :: ucase
+    public :: lcase
 
     character (len=*), private, parameter :: LOWER_CASE = 'abcdefghijklmnopqrstuvwxyz'
     character (len=*), private, parameter :: UPPER_CASE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 contains
-    pure function StrUpCase(Input_String) result(Output_String)
+    pure function ucase(Input_String) result(Output_String)
         character (len=*), intent (in) :: Input_String
         character (len(Input_String)) :: Output_String
 
@@ -21,9 +21,9 @@ contains
             n = index(LOWER_CASE, Output_String(i:i))
             if (n /= 0) Output_String(i:i) = UPPER_CASE(n:n)
         end do
-    end function StrUpCase
+    end function ucase
 
-    pure function StrLowCase(Input_String) result(Output_String)
+    pure function lcase(Input_String) result(Output_String)
         character (len=*), intent (in) :: Input_String
         character (len(Input_String)) :: Output_String
 
@@ -35,5 +35,5 @@ contains
             n = index(UPPER_CASE, Output_String(i:i))
             if (n /= 0) Output_String(i:i) = LOWER_CASE(n:n)
         end do
-    end function StrLowCase
+    end function lcase
 end module string_utility

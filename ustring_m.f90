@@ -1,6 +1,6 @@
 module ustring_m
     use string_m, only : string_t
-    use string_utility
+    use string_utility, only : ucase, lcase
 
     implicit none
     private
@@ -28,14 +28,14 @@ contains
         class (ustring_t), intent (inout) :: lhs
         character(len=*), intent(in) :: rhs
 
-        call lhs%string_t%set_value(StrUpCase(rhs))
+        call lhs%string_t%set_value(ucase(rhs))
     end subroutine ustring_t_assign_character
 
     pure subroutine set_uvalue(this, the_value)
         class (ustring_t), intent (inout) :: this
         character(len=*), intent (in) :: the_value
 
-        call this%string_t%set_value(StrUpCase(trim(the_value)))
+        call this%string_t%set_value(ucase(trim(the_value)))
     end subroutine set_uvalue
 
 end module ustring_m
