@@ -4,6 +4,14 @@ This style guide comes from recommendations received on comp.lang.fortran
 and the Fortran wiki (http://fortranwiki.org) from various helpful people 
 including Wolfgang Kilian, FortranFan and Ian Harvey.
 
+Naming of files:
+------ -- -----
+
+Name all source files with a .f90 suffix.  There is no need to name them
+things like .f95 or .f08 as the .f90 suffix essentially tells the compiler
+that this isn't FORTRAN-77.  To control the dialict of the particular
+compiler, there is typically a compiler switch.
+
 Use of "implicit none":
 --- --  -------- ----
 
