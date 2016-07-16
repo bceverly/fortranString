@@ -12,8 +12,8 @@ module string_m
         procedure, public, pass(this) :: get_value => get_value_string_t
         procedure, public, pass(this) :: set_value => set_value_string_t
 
-        generic :: assignment (=) => string_t_assign_string_t, &
-                                     string_t_assign_character
+        generic, public  :: assignment (=) => string_t_assign_string_t, &
+                                              string_t_assign_character
 
         procedure, private, pass(lhs) :: string_t_assign_string_t
         procedure, private, pass(lhs) :: string_t_assign_character
