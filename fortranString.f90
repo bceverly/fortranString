@@ -29,6 +29,6 @@ program fortranString
     string3 = "Howdy!"
     print *, string3%get_value()
 
-!    string3 = string2
-!    print *, string3%get_value()
+    string3 = string2
+    print *, string3%get_value()
 end program fortranString
