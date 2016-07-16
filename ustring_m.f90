@@ -11,19 +11,27 @@ module ustring_m
     contains
         procedure, public, pass(this) :: set_value => set_uvalue
 
+        generic :: assignment (=) => ustring_t_assign_string_t, &
+                          ustring_t_assign_character
+
+        procedure, private, pass(lhs) :: ustring_t_assign_string_t
+        procedure, private, pass(lhs) :: ustring_t_assign_character
     end type ustring_t
 
-    interface assignment (=)
-        module procedure ustring_t_assign
-    end interface
-
 contains
-    subroutine ustring_t_assign(lhs, rhs)
-        class (ustring_t), intent (out), allocatable :: lhs
-        class (ustring_t), intent (in) :: rhs
+    subroutine ustring_t_assign_string_t(lhs, rhs)
+        class (ustring_t), intent (inout) :: lhs
+        type (string_t), intent (in) :: rhs
 
-        call lhs%set_value(rhs%string_t%get_value())
-    end subroutine ustring_t_assign
+        lhs = StrUpCase(rhs%get_value())
+    end subroutine ustring_t_assign_string_t
+
+    subroutine ustring_t_assign_character(lhs, rhs)
+        class (ustring_t), intent (inout) :: lhs
+        character(len=*), intent(in) :: rhs
+
+        lhs = StrUpCase(rhs)
+    end subroutine ustring_t_assign_character
 
     subroutine set_uvalue(this, the_value)
         class (ustring_t), intent (inout) :: this

@@ -15,19 +15,17 @@ program fortranString
     type (string_t) :: string1
     type (string_t) :: string2
     type (ustring_t) :: string3
-    character (:), allocatable :: char_var
-    
-    char_var = "Bonjour"
 
     ! Run tests
-    string1 = char_var
-    call string1%set_value("Bonjour!")
-    call string1%set_value("Hallo!")
+    string1 = "Bonjour"
+    print *, string1%get_value()
 
-    call string2%set_value("Hello world!")
+    string2 = "Hello world!"
+    print *, string2%get_value()
+
     string1 = string2
     print *, string1%get_value()
 
-    call string3%set_value(string1%get_value())
+    string3 = string1%get_value()
     print *, string3%get_value()
 end program fortranString
